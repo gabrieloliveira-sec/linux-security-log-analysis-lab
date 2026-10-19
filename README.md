@@ -90,7 +90,21 @@ Em um SOC corporativo, seria necessário correlacionar outras fontes, como hist�
 
 ## Evidências
 
-As capturas de tela reais do terminal serão incluídas posteriormente na pasta `screenshots/`, após revisão para evitar a divulgação de informações desnecessárias.
+As imagens abaixo foram registradas durante a execução do laboratório no Ubuntu e mostram as etapas realizadas. Os arquivos foram enviados à raiz do repositório com seus nomes originais.
+
+### Evidência 1 — Simulação da falha e consulta ao journal
+
+![Terminal Ubuntu: simulação de senha incorreta e consulta da falha de autenticação](Captura%20de%20tela%202026-10-19%20143030.png)
+
+A captura mostra a invalidação da autenticação em cache com `sudo -k`, a tentativa de autenticação malsucedida em `sudo whoami` e a posterior consulta ao `journalctl` para localizar o evento `authentication failure`. Também aparecem tentativas anteriores de digitação de comandos corrigidas durante a prática.
+
+### Evidência 2 — Correlação e linha do tempo do sudo
+
+![Terminal Ubuntu: eventos sudo com falha de autenticação e execução autorizada de whoami](Captura%20de%20tela%202026-10-19%20143047.png)
+
+A segunda captura exibe o filtro `journalctl -t sudo` e a sequência de eventos: falha de autenticação às **17:13:57**, seguida do registro de execução de `/usr/bin/whoami` às **17:14:37**, com abertura e encerramento da sessão privilegiada.
+
+**Interpretação:** a sequência é consistente com o teste autorizado e não constitui, isoladamente, evidência de invasão.
 
 ## Próximos passos
 
